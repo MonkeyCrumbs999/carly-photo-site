@@ -49,7 +49,7 @@ const Gallery = () => {
               onClick={closeLightbox}
             >
               <motion.img
-                src={`/src/assets/${selectedImage}`}
+                src={`/${selectedImage}`}
                 alt="Lightbox Image"
                 className="max-w-full max-h-[90vh] my-8" // Modify the className to add margin
                 initial={{ scale: 0.8 }}
