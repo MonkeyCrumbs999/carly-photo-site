@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="flex flex-col items-center justify-center">
         {/* Images container */}
         <div className="flex flex-col md:flex-row gap-4 items-start justify-center mb-4">
@@ -13,9 +13,9 @@ const Home = () => {
               src="/image-1.jpg"
               className="w-full h-auto"
               alt="Description"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
             />
           </div>
           {/* Container for the second image with vertical offset on desktop */}
@@ -24,9 +24,9 @@ const Home = () => {
               src="/image-2.jpg"
               className="w-full h-auto"
               alt="Description"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }} // Adjust delay as needed
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             />
           </div>
         </div>
@@ -37,9 +37,9 @@ const Home = () => {
               src="/image-4.jpg"
               className="w-full h-auto"
               alt="Description"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }} // Adjust delay as needed
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             />
           </div>
           {/* Container for the fourth image with vertical offset on desktop */}
@@ -48,9 +48,9 @@ const Home = () => {
               src="/image-3.jpg"
               className="w-full h-auto"
               alt="Description"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }} // Adjust delay as needed
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
             />
           </div>
         </div>
@@ -61,7 +61,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Carly Pearl-Sacks <br />
+            Carly Pearl-Sacks <br />{" "}
             <span className="ml-24 sm:ml-64">Photography</span>
           </motion.h1>
           <motion.p

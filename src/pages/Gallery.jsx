@@ -30,9 +30,9 @@ const Gallery = () => {
               src={`/${image}`}
               alt={`Gallery Image ${index + 1}`}
               className="w-full h-auto rounded-lg shadow-lg cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => openLightbox(image)}
