@@ -117,7 +117,7 @@ const Header = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="mt-4 overflow-hidden"
+              className="mt-0 sm:mt-4 overflow-hidden"
               initial="closed"
               animate="open"
               exit="closed"
