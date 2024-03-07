@@ -27,7 +27,7 @@ const Gallery = () => {
           {images.map((image, index) => (
             <motion.img
               key={index}
-              src={`/src/assets/${image}`}
+              src={`/${image}`}
               alt={`Gallery Image ${index + 1}`}
               className="w-full h-auto rounded-lg shadow-lg cursor-pointer"
               initial={{ opacity: 0, y: 20 }}

@@ -25,7 +25,7 @@ const Header = () => {
           >
             <NavLink to="/" end>
               <img
-                src="/src/assets/cps-photography.png"
+                src="/cps-photography.png"
                 alt="Photographer Portfolio"
                 className="h-20 sm:h-24 w-auto"
               />

@@ -10,7 +10,7 @@ const Home = () => {
           {/* Container for the first image */}
           <div className="max-w-full md:w-5/12">
             <motion.img
-              src="/src/assets/image-1.jpg"
+              src="/image-1.jpg"
               className="w-full h-auto"
               alt="Description"
               initial={{ opacity: 0, y: 20 }}
@@ -21,7 +21,7 @@ const Home = () => {
           {/* Container for the second image with vertical offset on desktop */}
           <div className="max-w-full md:w-2/3 md:mt-12">
             <motion.img
-              src="/src/assets/image-2.jpg"
+              src="/image-2.jpg"
               className="w-full h-auto"
               alt="Description"
               initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ const Home = () => {
           {/* Container for the third image with vertical offset on desktop */}
           <div className="max-w-full md:w-2/3 md:mt-12">
             <motion.img
-              src="/src/assets/image-4.jpg"
+              src="/image-4.jpg"
               className="w-full h-auto"
               alt="Description"
               initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ const Home = () => {
           {/* Container for the fourth image with vertical offset on desktop */}
           <div className="max-w-full md:w-5/12">
             <motion.img
-              src="/src/assets/image-3.jpg"
+              src="/image-3.jpg"
               className="w-full h-auto"
               alt="Description"
               initial={{ opacity: 0, y: 20 }}
