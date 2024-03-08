@@ -1,5 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+
+const ProgressiveImage = ({ src, alt }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isLoading ? 0.5 : 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <motion.img
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoading(false)}
+        initial={{ filter: "blur(10px)" }}
+        animate={{ filter: "blur(0px)" }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
+  );
+};
 
 const Home = () => {
   return (
@@ -9,49 +30,21 @@ const Home = () => {
         <div className="flex flex-col md:flex-row gap-4 items-start justify-center mb-4">
           {/* Container for the first image */}
           <div className="max-w-full md:w-5/12">
-            <motion.img
-              src="/image-1.jpg"
-              className="w-full h-auto"
-              alt="Description"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
+            <ProgressiveImage src="/image-1.jpg" alt="Description" />
           </div>
           {/* Container for the second image with vertical offset on desktop */}
           <div className="max-w-full md:w-2/3 md:mt-12">
-            <motion.img
-              src="/image-2.jpg"
-              className="w-full h-auto"
-              alt="Description"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            />
+            <ProgressiveImage src="/image-2.jpg" alt="Description" />
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-4 items-start justify-center mb-4">
           {/* Container for the third image with vertical offset on desktop */}
           <div className="max-w-full md:w-2/3 md:mt-12">
-            <motion.img
-              src="/image-4.jpg"
-              className="w-full h-auto"
-              alt="Description"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-            />
+            <ProgressiveImage src="/image-4.jpg" alt="Description" />
           </div>
           {/* Container for the fourth image with vertical offset on desktop */}
           <div className="max-w-full md:w-5/12">
-            <motion.img
-              src="/image-3.jpg"
-              className="w-full h-auto"
-              alt="Description"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-            />
+            <ProgressiveImage src="/image-3.jpg" alt="Description" />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center mt-12 md:mt-24 mb-12 md:mb-24">
