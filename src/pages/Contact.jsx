@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Contact = () => {
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto px-6 py-8 md:py-2">
       <motion.h1
         className="text-4xl font-bold text-gray-800 mb-8 text-center"
         initial={{ opacity: 0, y: -20 }}

@@ -1,8 +1,10 @@
+// src/components/pages/Gallery.jsx
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import Lightbox from "../components/common/Lightbox";
 
 const Gallery = () => {
   const images = [
@@ -35,6 +37,15 @@ const Gallery = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Prevent scrolling when lightbox is open
+    if (selectedImage !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [selectedImage]);
+
   const openLightbox = (index) => {
     setSelectedImage(index);
   };
@@ -65,7 +76,7 @@ const Gallery = () => {
   });
 
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto px-6 py-8 md:py-2">
       <motion.div
         className="flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 20 }}
@@ -91,50 +102,15 @@ const Gallery = () => {
             </motion.div>
           ))}
         </div>
-        <AnimatePresence>
-          {selectedImage !== null && (
-            <motion.div
-              className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center z-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeLightbox}
-              {...swipeHandlers}
-            >
-              <motion.img
-                src={`/${images[selectedImage]}`}
-                alt={`Gallery Image ${selectedImage + 1}`}
-                className="max-w-full max-h-[90vh] mx-auto"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <button
-                className="absolute top-4 right-4 text-white text-4xl font-bold"
-                onClick={closeLightbox}
-              >
-                &times;
-              </button>
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-                <div className="flex items-center space-x-2">
-                  {images.map((_, index) => (
-                    <div
-                      key={index}
-                      className={`w-3 h-3 rounded-full ${
-                        index === selectedImage ? "bg-white" : "bg-gray-500"
-                      } cursor-pointer`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        goToImage(index);
-                      }}
-                    ></div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Lightbox
+          images={images}
+          selectedImage={selectedImage}
+          onClose={closeLightbox}
+          onPrev={goToPreviousImage}
+          onNext={goToNextImage}
+          onDotClick={goToImage}
+          swipeHandlers={swipeHandlers}
+        />
       </motion.div>
     </div>
   );
