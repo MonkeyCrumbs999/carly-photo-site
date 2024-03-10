@@ -83,7 +83,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
           </Swiper>
           {/* Increase z-index of the close button */}
           <button
-            className="absolute top-4 right-4 text-white text-4xl font-bold z-100" // Increased z-index
+            className="absolute top-4 right-4 text-white text-4xl font-bold z-50"
             onClick={onClose}
           >
             &times;
