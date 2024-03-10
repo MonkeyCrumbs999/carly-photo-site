@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Zoom } from "swiper/modules";
@@ -8,6 +8,7 @@ import "swiper/css/zoom";
 
 const Lightbox = ({ images, selectedImage, onClose }) => {
   const [showMessage, setShowMessage] = useState(true);
+  const swiperRef = useRef(null);
 
   useEffect(() => {
     const hasShownMessage = localStorage.getItem("hasShownLightboxMessage");
@@ -28,6 +29,15 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
     event.stopPropagation();
   };
 
+  // Adjust the swiper's allowTouchMove property based on zoom state
+  const handleZoomChange = (swiper, scale) => {
+    if (scale === 1) {
+      swiper.allowTouchMove = true;
+    } else {
+      swiper.allowTouchMove = false;
+    }
+  };
+
   return (
     <AnimatePresence>
       {selectedImage !== null && (
@@ -39,10 +49,12 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
           onClick={onClose}
         >
           <Swiper
-            modules={[Pagination, Zoom]} // Include the Zoom module here
+            ref={swiperRef}
+            modules={[Pagination, Zoom]}
             spaceBetween={50}
             slidesPerView={1}
-            zoom={true} // Enable zoom
+            zoom={true}
+            onZoomChange={handleZoomChange} // Listen to zoom change
             pagination={{
               type: "progressbar",
               progressbarFillClass: "swiper-pagination-progressbar-fill",
@@ -58,8 +70,6 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 className="flex items-center justify-center"
               >
                 <div className="swiper-zoom-container">
-                  {" "}
-                  {/* Wrap each image in a swiper-zoom-container */}
                   <img
                     src={image}
                     alt={`Gallery Image ${index + 1}`}
@@ -71,9 +81,9 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
             ))}
             <div className="custom-pagination absolute bottom-0 left-0 right-0 w-full"></div>
           </Swiper>
-          {/* Close button */}
+          {/* Increase z-index of the close button */}
           <button
-            className="absolute top-4 right-4 text-white text-4xl font-bold"
+            className="absolute top-4 right-4 text-white text-4xl font-bold z-60" // Increased z-index
             onClick={onClose}
           >
             &times;
