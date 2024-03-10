@@ -1,10 +1,12 @@
 // src/components/pages/Gallery.jsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useSwipeable } from "react-swipeable";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Lightbox from "../components/common/Lightbox";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const Gallery = () => {
   const images = [
@@ -22,20 +24,6 @@ const Gallery = () => {
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     // Prevent scrolling when lightbox is open
@@ -53,27 +41,6 @@ const Gallery = () => {
   const closeLightbox = () => {
     setSelectedImage(null);
   };
-
-  const goToNextImage = () => {
-    setSelectedImage((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const goToPreviousImage = () => {
-    setSelectedImage((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToImage = (index) => {
-    setSelectedImage(index);
-  };
-
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: goToNextImage,
-    onSwipedRight: goToPreviousImage,
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
 
   return (
     <div className="container mx-auto px-6 py-8 md:py-2">
@@ -102,15 +69,13 @@ const Gallery = () => {
             </motion.div>
           ))}
         </div>
-        <Lightbox
-          images={images}
-          selectedImage={selectedImage}
-          onClose={closeLightbox}
-          onPrev={goToPreviousImage}
-          onNext={goToNextImage}
-          onDotClick={goToImage}
-          swipeHandlers={swipeHandlers}
-        />
+        {selectedImage !== null && (
+          <Lightbox
+            images={images}
+            selectedImage={selectedImage}
+            onClose={closeLightbox}
+          />
+        )}
       </motion.div>
     </div>
   );
