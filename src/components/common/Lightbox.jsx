@@ -1,4 +1,3 @@
-// src/components/common/Lightbox.jsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -40,10 +39,10 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
           onClick={onClose}
         >
           <Swiper
-            modules={[Pagination]}
+            modules={[Pagination, Zoom]} // Include the Zoom module here
             spaceBetween={50}
             slidesPerView={1}
-            zoom={true}
+            zoom={true} // Enable zoom
             pagination={{
               type: "progressbar",
               progressbarFillClass: "swiper-pagination-progressbar-fill",
@@ -58,12 +57,16 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 key={index}
                 className="flex items-center justify-center"
               >
-                <img
-                  src={image}
-                  alt={`Gallery Image ${index + 1}`}
-                  className="max-w-[90%] max-h-[80vh] object-contain"
-                  style={{ marginTop: "2rem", marginBottom: "2rem" }}
-                />
+                <div className="swiper-zoom-container">
+                  {" "}
+                  {/* Wrap each image in a swiper-zoom-container */}
+                  <img
+                    src={image}
+                    alt={`Gallery Image ${index + 1}`}
+                    className="max-w-[90%] max-h-[80vh] object-contain"
+                    style={{ marginTop: "2rem", marginBottom: "2rem" }}
+                  />
+                </div>
               </SwiperSlide>
             ))}
             <div className="custom-pagination absolute bottom-0 left-0 right-0 w-full"></div>
