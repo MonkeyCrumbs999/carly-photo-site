@@ -2,32 +2,31 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Zoom } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/zoom";
 
 const Lightbox = ({ images, selectedImage, onClose }) => {
   const [showMessage, setShowMessage] = useState(true);
 
   useEffect(() => {
-    // Check if the user has already clicked on the lightbox
-    const hasClickedBefore = localStorage.getItem("lightboxClicked");
+    const hasShownMessage = localStorage.getItem("hasShownLightboxMessage");
 
-    if (hasClickedBefore) {
-      setShowMessage(false); // Don't show the message if they've clicked before
-    } else {
+    if (!hasShownMessage) {
       const timer = setTimeout(() => {
         setShowMessage(false);
+        localStorage.setItem("hasShownLightboxMessage", "true");
       }, 2000);
 
       return () => clearTimeout(timer);
+    } else {
+      setShowMessage(false);
     }
   }, []);
 
   const handleSwiperClick = (event) => {
     event.stopPropagation();
-    // Mark that the user has clicked on the lightbox
-    localStorage.setItem("lightboxClicked", "true");
   };
 
   return (
@@ -44,6 +43,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
             modules={[Pagination]}
             spaceBetween={50}
             slidesPerView={1}
+            zoom={true}
             pagination={{
               type: "progressbar",
               progressbarFillClass: "swiper-pagination-progressbar-fill",
@@ -82,7 +82,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="absolute right-60 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 text-black py-2 px-4 rounded-lg shadow-md z-50"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-75 text-black py-2 px-4 rounded-lg shadow-md z-50"
               >
                 Swipe left or right to view images
               </motion.div>
