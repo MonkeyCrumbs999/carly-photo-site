@@ -46,7 +46,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={onClose}
+          // Removed onClick={onClose} from here to disable closing by clicking outside
         >
           <Swiper
             ref={swiperRef}
