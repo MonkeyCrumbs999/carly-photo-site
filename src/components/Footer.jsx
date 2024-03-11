@@ -5,7 +5,7 @@ const Footer = () => {
 
   useEffect(() => {
     // Assuming images take around 3 seconds to load; adjust this value based on your needs
-    const timer = setTimeout(() => setShowFooter(true), 1000);
+    const timer = setTimeout(() => setShowFooter(true), 500);
 
     return () => clearTimeout(timer);
   }, []);
