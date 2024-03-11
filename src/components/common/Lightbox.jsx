@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Zoom } from "swiper/modules";
+import { Zoom, Scrollbar } from "swiper/modules"; // Remove Pagination from the import
 import "swiper/css";
-import "swiper/css/pagination";
+// Remove "swiper/css/pagination";
 import "swiper/css/zoom";
+import "swiper/css/scrollbar";
 
 const Lightbox = ({ images, selectedImage, onClose }) => {
   const [showMessage, setShowMessage] = useState(true);
@@ -26,30 +27,23 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
   }, []);
 
   useEffect(() => {
-    // When the lightbox is open, disable scrolling on the body
     if (selectedImage !== null) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
 
-    // Cleanup function to ensure scrolling is re-enabled when the component unmounts
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [selectedImage]); // This effect depends on the selectedImage
+  }, [selectedImage]);
 
   const handleSwiperClick = (event) => {
     event.stopPropagation();
   };
 
-  // Adjust the swiper's allowTouchMove property based on zoom state
   const handleZoomChange = (swiper, scale) => {
-    if (scale === 1) {
-      swiper.allowTouchMove = true;
-    } else {
-      swiper.allowTouchMove = false;
-    }
+    swiper.allowTouchMove = scale === 1;
   };
 
   return (
@@ -60,20 +54,19 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          // Removed onClick={onClose} from here to disable closing by clicking outside
+          style={{
+            "--swiper-scrollbar-drag-bg-color": "#fff",
+            "--swiper-scrollbar-bottom": "15px",
+          }}
         >
           <Swiper
             ref={swiperRef}
-            modules={[Pagination, Zoom]}
+            modules={[Zoom, Scrollbar]} // Only include Zoom and Scrollbar modules
             spaceBetween={50}
             slidesPerView={1}
             zoom={true}
-            onZoomChange={handleZoomChange} // Listen to zoom change
-            pagination={{
-              type: "progressbar",
-              progressbarFillClass: "swiper-pagination-progressbar-fill",
-              el: ".custom-pagination",
-            }}
+            onZoomChange={handleZoomChange}
+            scrollbar={{ draggable: true }} // Ensure scrollbar configuration is present
             initialSlide={selectedImage}
             className="w-full h-full flex items-center justify-center"
             onClick={handleSwiperClick}
@@ -93,9 +86,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 </div>
               </SwiperSlide>
             ))}
-            <div className="custom-pagination absolute bottom-0 left-0 right-0 w-full z-50"></div>
           </Swiper>
-          {/* Increase z-index of the close button */}
           <button
             className="absolute top-4 right-4 text-white text-4xl font-bold z-50"
             onClick={onClose}
