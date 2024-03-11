@@ -68,3 +68,8 @@
   background: linear-gradient(to right, #f0f0f0 8%, #bdbdbd 18%, #f0f0f0 33%);
   background-size: 800px 104px;
 }
+
+/* Add this CSS to your Lightbox component's stylesheet */
+.swiper-zoom-container img {
+  transition: transform 0.3s ease-out; /* Adjust the duration and easing function as needed */
+}
