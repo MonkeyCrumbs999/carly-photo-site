@@ -60,6 +60,18 @@ const Header = () => {
               </motion.li>
               <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <NavLink
+                  to="/pricing"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-gray-800 uppercase text-lg"
+                      : "text-gray-600 hover:text-gray-800 uppercase text-lg"
+                  }
+                >
+                  Pricing
+                </NavLink>
+              </motion.li>
+              <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <NavLink
                   to="/about"
                   className={({ isActive }) =>
                     isActive
@@ -157,6 +169,22 @@ const Header = () => {
                       onClick={toggleMenu}
                     >
                       Gallery
+                    </NavLink>
+                  </motion.li>
+                  <motion.li
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <NavLink
+                      to="/pricing"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-gray-800 uppercase text-base"
+                          : "text-gray-600 hover:text-gray-800 uppercase text-base"
+                      }
+                      onClick={toggleMenu}
+                    >
+                      Pricing
                     </NavLink>
                   </motion.li>
                   <motion.li

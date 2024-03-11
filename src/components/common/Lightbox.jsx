@@ -79,7 +79,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 </div>
               </SwiperSlide>
             ))}
-            <div className="custom-pagination absolute bottom-0 left-0 right-0 w-full"></div>
+            <div className="custom-pagination absolute bottom-0 left-0 right-0 w-full z-50"></div>
           </Swiper>
           {/* Increase z-index of the close button */}
           <button
