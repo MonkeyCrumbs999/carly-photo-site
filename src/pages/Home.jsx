@@ -12,7 +12,7 @@ const Home = () => {
     // Simulate content loading delay for the section after ImageGrid
     setTimeout(() => {
       setIsContentLoaded(true);
-    }, 100); // Adjust this timeout to match your expected load time for the content after ImageGrid
+    }, 300); // Adjust this timeout to match your expected load time for the content after ImageGrid
   }, []);
 
   return (
