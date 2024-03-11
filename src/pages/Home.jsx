@@ -28,7 +28,7 @@ const Home = () => {
             >
               Interested? Check out my portfolio and contact me to learn more.
             </motion.p>
-            <Button href="/gallery" className="">
+            <Button href="/portfolio" className="">
               Explore Gallery
             </Button>
           </div>

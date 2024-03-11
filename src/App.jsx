@@ -7,7 +7,7 @@ import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
-import SkeletonLoader from "../src/components/common/SkeletonLoader"; // Import SkeletonLoader
+import SkeletonLoader from "../src/components/common/SkeletonLoader";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ const App = () => {
     // Simulate content loading delay
     setTimeout(() => {
       setIsLoading(false);
-    }, 200);
+    }, 100); // Adjust this timeout to match your expected load time
   }, []);
 
   return (
@@ -25,7 +25,7 @@ const App = () => {
         <Header />
         <main className="flex-grow">
           {isLoading ? (
-            <SkeletonLoader /> // Use SkeletonLoader instead of basic loading message
+            <SkeletonLoader />
           ) : (
             <Routes>
               <Route path="/" element={<Home />} />
@@ -36,6 +36,7 @@ const App = () => {
             </Routes>
           )}
         </main>
+        {/* Display the Footer only after isLoading is false */}
         {!isLoading && <Footer />}
       </div>
     </Router>
