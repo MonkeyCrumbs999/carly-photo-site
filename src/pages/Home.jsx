@@ -40,7 +40,7 @@ const Home = () => {
                 Interested? Check out my portfolio and contact me to learn more.
               </motion.p>
               <Button href="/portfolio" className="">
-                Explore Gallery
+                Explore Portfolio
               </Button>
             </div>
           ) : (
