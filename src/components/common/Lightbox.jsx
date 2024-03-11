@@ -25,6 +25,20 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
     }
   }, []);
 
+  useEffect(() => {
+    // When the lightbox is open, disable scrolling on the body
+    if (selectedImage !== null) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Cleanup function to ensure scrolling is re-enabled when the component unmounts
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [selectedImage]); // This effect depends on the selectedImage
+
   const handleSwiperClick = (event) => {
     event.stopPropagation();
   };
