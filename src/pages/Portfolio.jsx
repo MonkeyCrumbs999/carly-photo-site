@@ -1,4 +1,4 @@
-// src/components/pages/Gallery.jsx
+// src/components/pages/Portfolio.jsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Gallery = () => {
+const Portfolio = () => {
   const images = [
     "image-1.jpg",
     "image-3.jpg",
@@ -50,7 +50,7 @@ const Gallery = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl font-bold text-gray-800 mb-8">Gallery</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-8">Portfolio</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {images.map((image, index) => (
             <motion.div
@@ -81,4 +81,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default Portfolio;

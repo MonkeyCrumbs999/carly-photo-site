@@ -48,14 +48,14 @@ const Header = () => {
               </motion.li>
               <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <NavLink
-                  to="/gallery"
+                  to="/portfolio"
                   className={({ isActive }) =>
                     isActive
                       ? "text-gray-800 uppercase text-lg"
                       : "text-gray-600 hover:text-gray-800 uppercase text-lg"
                   }
                 >
-                  Gallery
+                  Portfolio
                 </NavLink>
               </motion.li>
               <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -160,7 +160,7 @@ const Header = () => {
                     whileTap={{ scale: 0.9 }}
                   >
                     <NavLink
-                      to="/gallery"
+                      to="/portfolio"
                       className={({ isActive }) =>
                         isActive
                           ? "text-gray-800 uppercase text-base"
@@ -168,7 +168,7 @@ const Header = () => {
                       }
                       onClick={toggleMenu}
                     >
-                      Gallery
+                      Portfolio
                     </NavLink>
                   </motion.li>
                   <motion.li
