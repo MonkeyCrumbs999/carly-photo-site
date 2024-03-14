@@ -10,17 +10,30 @@ import "swiper/css/pagination";
 
 const Portfolio = () => {
   const images = [
-    "image-1.jpg",
-    "image-3.jpg",
-    "image-5.jpg",
-    "image-4.jpg",
-    "image-2.jpg",
-    "image-9.jpg",
-    "image-6.jpg",
-    "image-7.jpg",
-    "image-8.jpg",
-    "image-10.jpg",
-    // Add more image file names
+    "natural-background-1.jpg",
+    "natural-background-2.jpg",
+    "natural-background-3.jpg",
+    "natural-background-4.jpg",
+    "natural-background-5.jpg",
+    "natural-background-6.jpg",
+    "natural-background-7.jpg",
+    "natural-background-8.jpg",
+    "natural-background-9.jpg",
+    "natural-background-10.jpg",
+    "natural-background-11.jpg",
+    "natural-background-12.jpg",
+    "natural-background-13.jpg",
+    "black-background-1.jpg",
+    "black-background-2.jpg",
+    "black-background-3.jpg",
+    "black-background-4.jpg",
+    "black-background-5.jpg",
+    "black-background-6.jpg",
+    "black-background-7.jpg",
+    "black-background-8.jpg",
+    "black-background-9.jpg",
+    "black-background-10.jpg",
+    "black-background-11.jpg",
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);

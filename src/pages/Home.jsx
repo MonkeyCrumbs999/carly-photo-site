@@ -39,9 +39,7 @@ const Home = () => {
               >
                 Interested? Check out my portfolio and contact me to learn more.
               </motion.p>
-              <Button href="/portfolio" className="">
-                Explore Portfolio
-              </Button>
+              <Button to="/portfolio">Explore Portfolio</Button>
             </div>
           ) : (
             <SkeletonLoader /> // Placeholder while content is loading
