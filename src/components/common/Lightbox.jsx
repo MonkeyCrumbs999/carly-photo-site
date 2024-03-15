@@ -6,6 +6,8 @@ import "swiper/css";
 // Remove "swiper/css/pagination";
 import "swiper/css/zoom";
 import "swiper/css/scrollbar";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Lightbox = ({ images, selectedImage, onClose }) => {
   const [showMessage, setShowMessage] = useState(true);
@@ -77,9 +79,11 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 className="flex items-center justify-center"
               >
                 <div className="swiper-zoom-container">
-                  <img
+                  <LazyLoadImage
                     src={image}
                     alt={`Gallery Image ${index + 1}`}
+                    effect="blur"
+                    placeholderSrc="/placeholder.jpg"
                     className="max-w-[90%] max-h-[80vh] object-contain"
                     style={{ marginTop: "2rem", marginBottom: "2rem" }}
                   />
