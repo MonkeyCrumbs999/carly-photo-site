@@ -24,6 +24,7 @@ function CarouselDefault() {
       transition={{ duration: 0.5 }}
     >
       <Carousel
+      touch={true}
         className="rounded-xl max-w-sm mx-auto"
         autoplay={true}
         autoplayDelay={4000}
