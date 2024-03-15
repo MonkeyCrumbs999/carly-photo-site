@@ -6,15 +6,15 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function CarouselDefault() {
   const images = [
-    "home-1.jpg",
-    "home-2.jpg",
-    "home-3.jpg",
-    "home-4.jpg",
-    "home-5.jpg",
-    "home-6.jpg",
-    "home-7.jpg",
-    "home-8.jpg",
-    "home-9.jpg"
+    "home-1.webp",
+    "home-2.webp",
+    "home-3.webp",
+    "home-4.webp",
+    "home-5.webp",
+    "home-6.webp",
+    "home-7.webp",
+    "home-8.webp",
+    "home-9.webp"
   ];
 
   return (
