@@ -1,8 +1,12 @@
 import React from 'react';
-import { Carousel } from '@material-tailwind/react';
-import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { Autoplay, Pagination, Navigation, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow'; // Import CSS for coverflow effect
 
 function CarouselDefault() {
   const images = [
@@ -18,19 +22,30 @@ function CarouselDefault() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <Swiper
+      modules={[Autoplay, Pagination, Navigation, EffectCoverflow]} // Include EffectCoverflow module
+      spaceBetween={50}
+      slidesPerView={1}
+      navigation
+      pagination={{ clickable: true }}
+      autoplay={{
+        delay: 4000,
+        disableOnInteraction: false,
+      }}
+      loop={true}
+      effect="coverflow" // Set effect to coverflow
+      coverflowEffect={{
+        rotate: 50, // Slide rotate in degrees
+        stretch: 0, // Stretch space between slides (in px)
+        depth: 100, // Depth offset in px (slides translate in Z axis)
+        modifier: 1, // Effect multiplier
+        slideShadows: true, // Enables slides shadows
+      }}
+      className="rounded-xl max-w-sm mx-auto"
     >
-      <Carousel
-        className="rounded-xl max-w-sm mx-auto"
-        autoplay={true}
-        autoplayDelay={4000}
-      >
-        {images.map((image, index) => (
+      {images.map((image, index) => (
+        <SwiperSlide key={index}>
           <LazyLoadImage
-            key={index}
             src={`/${image}`}
             alt={`image ${index + 1}`}
             effect="blur"
@@ -39,9 +54,9 @@ function CarouselDefault() {
             delayMethod="throttle"
             delayTime={300}
           />
-        ))}
-      </Carousel>
-    </motion.div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
 
