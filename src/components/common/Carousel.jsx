@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { Autoplay, Pagination, Navigation, EffectCoverflow } from 'swiper/modules';
+import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules'; // Removed Navigation from imports
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+// Removed import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow'; // Import CSS for coverflow effect
 
 function CarouselDefault() {
@@ -23,10 +23,10 @@ function CarouselDefault() {
 
   return (
     <Swiper
-      modules={[Autoplay, Pagination, Navigation, EffectCoverflow]} // Include EffectCoverflow module
+      modules={[Autoplay, Pagination, EffectCoverflow]} // Removed Navigation from modules
       spaceBetween={50}
       slidesPerView={1}
-      navigation
+      // Removed navigation prop
       pagination={{ clickable: true }}
       autoplay={{
         delay: 4000,
@@ -41,7 +41,7 @@ function CarouselDefault() {
         modifier: 1, // Effect multiplier
         slideShadows: true, // Enables slides shadows
       }}
-      className="rounded-xl max-w-sm mx-auto"
+      className="rounded-xl w-full sm:max-w-sm mx-auto"
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>

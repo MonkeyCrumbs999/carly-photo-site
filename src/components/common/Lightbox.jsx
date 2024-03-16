@@ -75,15 +75,15 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
             {images.map((image, index) => (
               <SwiperSlide
                 key={index}
-                className="flex items-center justify-center"
+                className="flex items-center justify-center w-full h-full"
               >
-                <div className="swiper-zoom-container sm:flex sm:items-center sm:justify-center sm:h-full">
+                <div className="swiper-zoom-container flex items-center justify-center w-full h-full">
                   <LazyLoadImage
                     src={image}
                     alt={`Gallery Image ${index + 1}`}
                     effect="blur"
                     placeholderSrc="/placeholder.jpg"
-                    className="max-w-[90%] max-h-[80vh] sm:max-w-full sm:max-h-1/2 object-contain"
+                    className="max-w-[90%] max-h-[80vh] object-contain mx-auto"
                     style={{ marginTop: "2rem", marginBottom: "2rem" }}
                   />
                 </div>
