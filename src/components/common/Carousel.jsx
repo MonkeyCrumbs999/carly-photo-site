@@ -52,7 +52,7 @@ function CarouselDefault() {
             placeholder={<div className="h-full w-full bg-gray-200 animate-pulse" />}
             className="h-full w-full object-cover"
             delayMethod="throttle"
-            delayTime={300}
+            delayTime={100}
           />
         </SwiperSlide>
       ))}
