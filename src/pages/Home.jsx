@@ -30,7 +30,11 @@ const splitText = (text, ctrls) => {
         delayChildren: wordIndex * 0.25,
         staggerChildren: 0.05,
       }}
-      style={{ display: "inline-block", marginRight: "0.25em", whiteSpace: "nowrap" }}
+      style={{
+        display: "inline-block",
+        marginRight: "0.25em",
+        whiteSpace: "nowrap",
+      }}
     >
       {word.split("").map((char, charIndex) => (
         <motion.span
@@ -74,12 +78,12 @@ const Home = () => {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="flex flex-col items-center justify-center">
         <Carousel />
-        <div className="flex flex-col items-center justify-center mt-12 md:mt-12 mb-12 md:mb-24">
-          <h1 className="text-4xl sm:text-5xl uppercase font-bold text-gray-800 mb-6 sm:mb-8 text-center">
-            {splitText("Carly Pearl-Sacks", ctrls)}
-            <br />
-            <span>{splitText("Photography", ctrls)}</span>
-          </h1>
+        <div className="flex flex-col items-center justify-center mt-4 md:mt-4 mb-12 md:mb-24">
+          <img
+            src="carly-logo-wide.png"
+            alt="Carly Pearl-Sacks Photography"
+            className="mx-auto"
+          />
           <motion.p
             className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 text-center"
             initial={{ opacity: 0, y: 20 }}
