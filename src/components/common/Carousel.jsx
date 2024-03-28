@@ -1,12 +1,11 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules'; // Removed Navigation from imports
-import 'swiper/css/pagination';
-// Removed import 'swiper/css/navigation';
-import 'swiper/css/effect-coverflow'; // Import CSS for coverflow effect
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { Autoplay, Pagination, EffectCoverflow } from "swiper/modules";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
 
 function CarouselDefault() {
   const images = [
@@ -18,29 +17,31 @@ function CarouselDefault() {
     "home-6.webp",
     "home-7.webp",
     "home-8.webp",
-    "home-9.webp"
+    "home-9.webp",
   ];
 
   return (
     <Swiper
-      modules={[Autoplay, Pagination, EffectCoverflow]} // Removed Navigation from modules
-      spaceBetween={50}
+      modules={[Autoplay, Pagination, EffectCoverflow]}
+      spaceBetween={30}
       slidesPerView={1}
-      // Removed navigation prop
       pagination={{ clickable: true }}
       autoplay={{
         delay: 4000,
         disableOnInteraction: false,
       }}
       loop={true}
-      effect="coverflow" // Set effect to coverflow
+      effect="coverflow"
       coverflowEffect={{
-        rotate: 50, // Slide rotate in degrees
-        stretch: 0, // Stretch space between slides (in px)
-        depth: 100, // Depth offset in px (slides translate in Z axis)
-        modifier: 1, // Effect multiplier
-        slideShadows: true, // Enables slides shadows
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
       }}
+      preloadImages={true}
+      watchSlidesProgress={true}
+      watchSlidesVisibility={true}
       className="rounded-xl w-full sm:max-w-sm mx-auto"
     >
       {images.map((image, index) => (
@@ -49,7 +50,9 @@ function CarouselDefault() {
             src={`/${image}`}
             alt={`image ${index + 1}`}
             effect="blur"
-            placeholder={<div className="h-full w-full bg-gray-200 animate-pulse" />}
+            placeholder={
+              <div className="h-full w-full bg-gray-200 animate-pulse" />
+            }
             className="h-full w-full object-cover"
             delayMethod="throttle"
             delayTime={100}
