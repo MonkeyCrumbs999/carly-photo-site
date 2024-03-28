@@ -65,7 +65,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
             modules={[Zoom, Scrollbar]}
             spaceBetween={50}
             slidesPerView={1}
-            zoom={{ enabled: true, maxRatio: 3, minRatio: 1, toggle: true }}
+            zoom={{ maxRatio: 3, toggle: true }}
             onZoomChange={handleZoomChange}
             scrollbar={{ draggable: true }}
             initialSlide={selectedImage}
@@ -77,7 +77,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
                 key={index}
                 className="flex items-center justify-center w-full h-full"
               >
-                <div className="swiper-zoom-container flex items-center justify-center w-full h-full">
+                <div className="swiper-zoom-container">
                   <LazyLoadImage
                     src={image}
                     alt={`Gallery Image ${index + 1}`}
