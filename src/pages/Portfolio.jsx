@@ -1,6 +1,6 @@
 // src/components/pages/Portfolio.jsx
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Lightbox from "../components/common/Lightbox";
@@ -37,6 +37,23 @@ const Portfolio = () => {
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const hasShownPopup = localStorage.getItem("hasShownPortfolioPopup");
+
+    if (!hasShownPopup) {
+      setShowPopup(true);
+      localStorage.setItem("hasShownPortfolioPopup", "true");
+
+      // Optional: Hide the popup after a few seconds
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   useEffect(() => {
     // Prevent scrolling when lightbox is open
@@ -57,6 +74,19 @@ const Portfolio = () => {
 
   return (
     <div className="container mx-auto px-6 py-8 md:py-2">
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="fixed top-1/4 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-75 text-black py-2 px-4 rounded-lg shadow-md z-50"
+          >
+            Click on an image to view in Lightbox mode!
+          </motion.div>
+        )}
+      </AnimatePresence>
       <motion.div
         className="flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 20 }}

@@ -5,8 +5,8 @@ import { Zoom, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/zoom";
 import "swiper/css/scrollbar";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Lightbox = ({ images, selectedImage, onClose }) => {
   const [showMessage, setShowMessage] = useState(true);
@@ -65,7 +65,7 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
             modules={[Zoom, Scrollbar]}
             spaceBetween={50}
             slidesPerView={1}
-            zoom={{ enabled: true, maxRatio: 3, minRatio:1, toggle: true }}
+            zoom={{ enabled: true, maxRatio: 3, minRatio: 1, toggle: true }}
             onZoomChange={handleZoomChange}
             scrollbar={{ draggable: true }}
             initialSlide={selectedImage}
