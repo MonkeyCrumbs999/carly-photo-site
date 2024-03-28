@@ -47,12 +47,12 @@ function CarouselDefault() {
         modifier: 1,
         slideShadows: true,
       }}
-      preloadImages={false}
-      watchSlidesVisibility={true}
+      preloadImages={true}
+      watchSlidesProgress={true}
       className="rounded-xl w-full sm:max-w-sm mx-auto"
     >
       {images.map((image, index) => (
-        <SwiperSlide key={index} lazy={true}>
+        <SwiperSlide key={index}>
           <LazyLoadImage
             src={`/${image}`}
             alt={`image ${index + 1}`}
