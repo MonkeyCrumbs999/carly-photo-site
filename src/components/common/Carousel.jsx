@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -20,11 +20,20 @@ function CarouselDefault() {
     "home-9.webp",
   ];
 
+  const swiperRef = useRef(null);
+
   useEffect(() => {
     // Preload images
-    images.forEach((image) => {
+    images.forEach((image, index) => {
       const img = new Image();
       img.src = `/${image}`;
+      // Preload the next 2 images
+      if (index < images.length - 2) {
+        const nextImg = new Image();
+        nextImg.src = `/${images[index + 1]}`;
+        const nextNextImg = new Image();
+        nextNextImg.src = `/${images[index + 2]}`;
+      }
     });
   }, []);
 
@@ -50,6 +59,20 @@ function CarouselDefault() {
       preloadImages={true}
       watchSlidesProgress={true}
       className="rounded-xl w-full sm:max-w-sm mx-auto"
+      onSlideChange={() => {
+        // Preload the next 2 images after changing slides
+        const swiper = swiperRef.current;
+        if (swiper) {
+          const activeIndex = swiper.activeIndex;
+          const nextIndex = (activeIndex + 1) % images.length;
+          const nextNextIndex = (activeIndex + 2) % images.length;
+          const nextImg = new Image();
+          nextImg.src = `/${images[nextIndex]}`;
+          const nextNextImg = new Image();
+          nextNextImg.src = `/${images[nextNextIndex]}`;
+        }
+      }}
+      ref={swiperRef}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
