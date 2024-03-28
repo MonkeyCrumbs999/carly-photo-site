@@ -85,7 +85,7 @@ function CarouselDefault() {
             }
             className="h-full w-full object-cover"
             delayMethod="throttle"
-            delayTime={100}
+            delayTime={10}
           />
         </SwiperSlide>
       ))}
