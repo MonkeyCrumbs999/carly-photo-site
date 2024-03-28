@@ -39,6 +39,38 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
     };
   }, [selectedImage]);
 
+  useEffect(() => {
+    const swiperInstance = swiperRef.current.swiper;
+    if (swiperInstance) {
+      let lastTap = 0;
+      const handleDoubleTap = (event) => {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        if (tapLength < 300 && tapLength > 0) {
+          // Your double tap action here
+          // For example, toggling zoom on the current slide
+          const zoom = swiperInstance.zoom;
+          if (zoom.scale === 1) {
+            zoom.in();
+          } else {
+            zoom.out();
+          }
+        }
+        lastTap = currentTime;
+      };
+
+      swiperInstance.slides.each((index, slide) => {
+        slide.addEventListener("touchend", handleDoubleTap);
+      });
+
+      return () => {
+        swiperInstance.slides.each((index, slide) => {
+          slide.removeEventListener("touchend", handleDoubleTap);
+        });
+      };
+    }
+  }, [images]); // Re-run when images change
+
   const handleSwiperClick = (event) => {
     event.stopPropagation();
   };
