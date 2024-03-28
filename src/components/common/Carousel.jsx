@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -20,6 +20,14 @@ function CarouselDefault() {
     "home-9.webp",
   ];
 
+  useEffect(() => {
+    // Preload images
+    images.forEach((image) => {
+      const img = new Image();
+      img.src = `/${image}`;
+    });
+  }, []);
+
   return (
     <Swiper
       modules={[Autoplay, Pagination, EffectCoverflow]}
@@ -39,13 +47,12 @@ function CarouselDefault() {
         modifier: 1,
         slideShadows: true,
       }}
-      preloadImages={true}
-      watchSlidesProgress={true}
+      preloadImages={false}
       watchSlidesVisibility={true}
       className="rounded-xl w-full sm:max-w-sm mx-auto"
     >
       {images.map((image, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} lazy={true}>
           <LazyLoadImage
             src={`/${image}`}
             alt={`image ${index + 1}`}
