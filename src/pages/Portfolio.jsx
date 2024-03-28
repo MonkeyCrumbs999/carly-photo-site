@@ -49,7 +49,7 @@ const Portfolio = () => {
       // Optional: Hide the popup after a few seconds
       const timer = setTimeout(() => {
         setShowPopup(false);
-      }, 5000);
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
