@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swiper, SwiperSlide, onDoubleTap } from "swiper/react"; // Modified line
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Zoom, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/zoom";
@@ -47,19 +47,6 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
     swiper.allowTouchMove = scale === 1;
   };
 
-  const handleDoubleTap = (e) => { // Added function
-    const swiper = swiperRef.current;
-    const zoom = swiper.zoom;
-
-    if (zoom.scale && zoom.scale !== 1) {
-      // Zoom Out
-      swiper.zoom.out();
-    } else {
-      // Zoom In
-      swiper.zoom.in(e);
-    }
-  };
-
   return (
     <AnimatePresence>
       {selectedImage !== null && (
@@ -84,7 +71,6 @@ const Lightbox = ({ images, selectedImage, onClose }) => {
             initialSlide={selectedImage}
             className="w-full h-full flex items-center justify-center"
             onClick={handleSwiperClick}
-            onDoubleTap={handleDoubleTap} // Added line
           >
             {images.map((image, index) => (
               <SwiperSlide
